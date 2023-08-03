@@ -1,0 +1,106 @@
+<div class="page-header">
+  <h3 class="page-title"> Registration </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title">Create new user</h4>
+      <form class="forms-sample" [formGroup]="registerForm" (ngSubmit)="CreateUser()" #myform="ngForm">
+        <div class="form-group">
+          <label for="exampleInputName1">Firstname</label>
+          <input type="text" class="form-control" id="exampleInputName1" [(ngModel)]="user!.firstName"
+            formControlName="firstname" placeholder="Firstame">         
+          <div *ngIf="registerForm.get('firstname')?.hasError('required') && submitted">
+            <small class="text-danger">Please enter firstname</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Lastname</label>
+          <input type="text" class="form-control" id="exampleInputName1" [(ngModel)]="user!.lastName"
+          formControlName="lastname" placeholder="Lastname">
+          <div *ngIf="registerForm.get('lastname')?.hasError('required') && submitted">
+            <small class="text-danger">Please enter lastname</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Login</label>
+          <input type="text" class="form-control" id="exampleInputName1" [(ngModel)]="user!.userName"
+          formControlName="username" placeholder="userName">
+          <div *ngIf="registerForm.get('username')?.hasError('required') && submitted">
+            <small class="text-danger">Please enter login</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail3" [(ngModel)]="user!.email"
+          formControlName="email" [pattern] = "emailPattern" placeholder="Email">
+          <div *ngIf="(registerForm.get('email')?.hasError('required')  && submitted) || (registerForm.get('email')?.errors?.['pattern'] && submitted)">
+            <small class="text-danger">Please enter valid email</small>
+        </div> 
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="user!.password"
+            formControlName="password" [pattern]="passwordPattern" placeholder="Password">
+            <div *ngIf="registerForm.get('password')?.errors?.['pattern'] ">
+              <small class="text-danger">Password must contain at least one number, one uppercase, symbol and a
+                lowercase letter and at least 8 characters<br />Password cannot
+                contain whitespace</small>            
+            </div>
+            <div *ngIf="(registerForm.get('password')?.hasError('required')  && submitted)">
+              <small class="text-danger">Please enter password</small>
+          </div> 
+        </div>
+        <div class="form-group">
+          <label for="confirm_password">Repeat password</label>
+          <input type="password" class="form-control" id="confirm_password"
+          formControlName="confirmPassword" [pattern]="passwordPattern" [(ngModel)]="confirmpassword"
+          placeholder="Password">
+          <div *ngIf="registerForm.get('confirmPassword')?.errors?.['pattern']">
+            <small class="text-danger">Password must contain at least one number, one uppercase, symbol and a
+              lowercase letterand at least 8 characters<br />Password cannot
+              contain whitespace</small>            
+          </div>
+          <div *ngIf="(registerForm.get('confirmPassword')?.hasError('required')  && submitted)">
+            <small class="text-danger">Please confirm password</small>
+        </div> 
+        <div *ngIf="passwordMatch">
+          <small class="text-danger">Password do not match</small>
+      </div> 
+        </div>
+        <div class="form-group">
+          <label for="exampleSelectGender">Gender</label>
+          <select class="form-control" id="exampleSelectGender" [(ngModel)]="user!.gender"
+          formControlName="gender">
+            <option value="m">Male</option>
+            <option value="f">Female</option>
+          </select>
+          <div *ngIf = "registerForm.get('gender').value == '' && submitted">
+            <small class="text-danger">Please enter gender</small>
+        </div>
+        </div>
+        <div class="form-group">
+          <label for="positionInput1">Position</label>
+          <input type="text" class="form-control" [(ngModel)]="user!.position" formControlName="position"
+            id="positionInput1" placeholder="Position">
+            <div *ngIf="registerForm.get('position')?.hasError('required') && submitted">
+              <small class="text-danger">Please enter position</small>
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Phone number</label>
+          <input type="text" class="form-control"  prefix="+994 " mask="00 000 00 00"
+           [showMaskTyped]="true" [(ngModel)]="user!.phoneNumber" [ngModelOptions]="{standalone: true}"
+            id="phoneInput">
+            <div *ngIf="phoneValid">
+              <small class="text-danger">Please enter valid phone number</small>
+          </div>
+
+        </div>
+        <app-notification [_header] = 'notificationHeader' [_message] = 'notificationMsg' [_alertType] = 'notificationType' ></app-notification>
+        <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+        <button class="btn btn-light" (click) = 'Cancel()'>Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

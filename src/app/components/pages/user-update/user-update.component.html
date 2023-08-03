@@ -1,0 +1,66 @@
+<div class="page-header">
+    <h3 class="page-title"> User Info Edit </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <form class="forms-sample" [formGroup]="updateForm" (ngSubmit)="UpdateUserInfo()" #myform="ngForm">
+                <div class="nav-profile-image profile-image image-container">
+                    <img src="assets/images/faces/face1.jpg" alt="profile">
+                    <a class="nav-link" href="#">
+                        <i class="mdi mdi-camera"></i>
+                    </a>
+                </div>
+                <div class="space"></div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Firstname</label>
+                    <input type="text" class="form-control" [(ngModel)]="user!.firstName " formControlName="firstname"
+                        placeholder="Firstame">
+                    <div *ngIf="updateForm.get('firstname')?.hasError('required') && submitted">
+                        <small class="text-danger">Please enter firstname</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Lastname</label>
+                    <input type="text" class="form-control" [(ngModel)]="user!.lastName" formControlName="lastname"
+                        placeholder="Lastname">
+                    <div *ngIf="updateForm.get('lastname')?.hasError('required') && submitted">
+                        <small class="text-danger">Please enter lastname</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleSelectGender">Gender</label>
+                    <select class="form-control" id="exampleSelectGender" [(ngModel)]="user!.gender"
+                        formControlName="gender">
+                        <option value="m">Male</option>
+                        <option value="f">Female</option>
+                    </select>
+                    <div *ngIf="updateForm.get('gender').value == '' && submitted">
+                        <small class="text-danger">Please enter gender</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="positionInput1">Position</label>
+                    <input type="text" class="form-control" id="positionInput1" [(ngModel)]="user!.position "
+                        formControlName="position" placeholder="Position">
+                    <div *ngIf="updateForm.get('position')?.hasError('required') && submitted">
+                        <small class="text-danger">Please enter position</small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phoneInput">Phone number</label>
+                    <input type="text" class="form-control" prefix="+994 " mask="00 000 00 00" [showMaskTyped]="true"
+                        [(ngModel)]="user!.phoneNumber" [ngModelOptions]="{standalone: true}" id="phoneInput">
+                    <div *ngIf="phoneValid">
+                        <small class="text-danger">Please enter valid phone number</small>
+                    </div>
+                </div>
+               
+                <app-notification [_header]='notificationHeader' [_message]='notificationMsg'
+                    [_alertType]='notificationType'></app-notification>
+                <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                <button class="btn btn-light" (click)="Cancel()">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>

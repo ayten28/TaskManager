@@ -1,0 +1,4 @@
+<select class="form-select form-select-sm" id="typeinp"
+[(ngModel)] = "_userId" (ngModelChange)="onModelChange(_userId)">
+    <option [value]="user.id" *ngFor="let user of users">{{user.userName}}</option>
+</select>

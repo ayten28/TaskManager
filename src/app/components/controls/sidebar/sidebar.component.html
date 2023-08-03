@@ -1,0 +1,53 @@
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+  <ul class="nav">
+    <li class="nav-item nav-profile">
+      <a (click)="MyInfo()" class="nav-link">
+        <div class="nav-profile-image">
+          <img src="assets/images/faces/face1.jpg" alt="profile">
+          <span class="login-status online"></span>
+          <!--change to offline or busy as needed-->
+        </div>
+        <div class="nav-profile-text d-flex flex-column">
+          <span class="font-weight-bold mb-2">{{fullName}} {{Admin}}</span>
+          <span class="text-secondary text-small">{{userName}} Project Manager</span>
+        </div>
+        <i class="mdi mdi-bookmark-check text-success nav-profile-badge"></i>
+      </a>
+    </li>
+
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <span class="menu-title">Manage Users</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-account-multiple menu-icon"></i>
+      </a>
+      <div class="collapse" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" routerLink="/main/createuser" [hidden]= !isAdmin >Create User</a></li>
+          <li class="nav-item"> <a class="nav-link" routerLink="/main/users">Users List</a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-bs-toggle="collapse" href="#general-pages" aria-expanded="false"
+        aria-controls="general-pages">
+        <span class="menu-title">Tasks</span>
+        <i class="menu-arrow"></i>
+        <i class="mdi mdi-checkbox-multiple-marked-outline menu-icon"></i>
+      </a>
+      <div class="collapse" id="general-pages">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item"> <a class="nav-link" (click)="MyCreatedTasks()"> Created By Me </a></li>
+          <li class="nav-item"> <a class="nav-link" (click)="AssignedToMeTasks()"> Recieved Tasks </a></li>
+          <li class="nav-item"> <a class="nav-link" (click)="MyDoneTasks()"> My Done Tasks </a></li>
+        </ul>
+      </div>
+    </li>
+    <li class="nav-item" [hidden]="!isAdmin">
+      <a class="nav-link" routerLink="/main/taskreport">
+        <span class="menu-title">Task Report</span>
+        <i class="mdi mdi mdi mdi-format-list-bulleted menu-icon"></i>
+      </a>
+    </li>
+  </ul>
+</nav>

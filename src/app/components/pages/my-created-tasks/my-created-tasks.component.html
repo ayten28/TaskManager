@@ -1,0 +1,59 @@
+<div class="page-header">
+    <h3 class="page-title"> My Created Tasks </h3>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="template-demo btn-group">
+            <button type="button" class="btn btn-gradient-primary btn-lg btn-block" routerLink="/main/newtask">
+                <i class="mdi mdi-plus"></i> Create Task </button>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>  </th>
+                    <th> # </th>
+                    <th> Task Name </th>
+                    <th> Task Description </th>
+                    <th> Create date </th>
+                    <th> Assigned to </th>
+                    <th> Task done date </th>
+                    <th>  </th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks" >
+                    <td>  <input class="checkbox" type="checkbox" [checked]="task.isDone" disabled> </td>
+                    <td> {{ task.id }} </td>
+                    <td> {{ task.taskName }} </td>
+                    <td> {{ task.taskDescription }} </td>
+                    <td> {{ task.createdDate }} </td>
+                    <td> {{ task.assignUserFullName }} </td>
+                    <td> {{ task.resolveDate }} </td>  
+                    <td> 
+                        <a class="nav-link" (click)="Navigate(task.id)">
+                            <i class="mdi mdi-information-outline"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="nav-link" (click)="EditTask(task.id)">
+                            <i class="mdi mdi-lead-pencil"></i>
+                        </a>
+                    </td>
+                    <!-- <td>
+                        <a class="nav-link" (click)="toggleSlideDown()">
+                            <i class="mdi mdi-comment"></i>
+                        </a>  
+                        <tr class="table-row">
+                            <td>
+                                <app-comments *ngIf="slideDownVisible" style="text-align: right;"></app-comments>  
+                            </td>
+                        </tr>                   
+                    </td> -->
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+export interface IgetUserInfoDtoModel {
+"id": string,
+    "userName": string,
+    "normalizedUserName": string,
+    "email": string,
+    "normalizedEmail": string,
+    "emailConfirmed": true,
+    "passwordHash": string,
+    "securityStamp": string,
+    "concurrencyStamp": string,
+    "phoneNumber": string,
+    "phoneNumberConfirmed": boolean,
+    "twoFactorEnabled": boolean,
+    "lockoutEnd": Date,
+    "lockoutEnabled": boolean,
+    "accessFailedCount": number,
+    "firstName": string,
+    "lastName": string,
+    "position": string,
+    "gender": string
+}

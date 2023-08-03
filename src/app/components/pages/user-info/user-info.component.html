@@ -1,0 +1,54 @@
+<div class="page-header">
+  <h3 class="page-title"> User Info </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form class="forms-sample">
+        <div class="nav-profile-image profile-image">
+          <img src="assets/images/faces/face1.jpg" alt="profile">         
+        </div>
+        <div class="space"></div>
+        <div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Fullname</label>
+          <input type="text" class="form-control" readonly="true"
+           [(ngModel)]="user!.firstName + ' ' + user!.lastName" [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Login</label>
+          <input type="text" class="form-control" readonly="true"
+           [(ngModel)]="user!.userName" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Email address</label>
+          <input type="text" class="form-control" readonly="true"
+           [(ngModel)]="user!.email" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group">
+          <label for="exampleSelectGender">Gender</label>
+          <input type="text" class="form-control" readonly="true"
+           [(ngModel)]="gender" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group">
+          <label for="positionInput1">Position</label>
+          <input type="text" class="form-control" readonly="true"
+           [(ngModel)]="user!.position" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group">
+          <label for="phoneInput">Phone number</label>
+          <input type="text" class="form-control" readonly="true"
+          [(ngModel)]="user!.phoneNumber" [ngModelOptions]="{standalone: true}" >
+        </div>
+        <div class="form-group">
+          <a class="nav-link" [hidden]="changePswdVisible"><u><label for="phoneInput" (click)=ChangePaswd()>Change
+                      Password</label></u></a>
+      </div>
+        <app-notification [_header] = 'notificationHeader' [_message] = 'notificationMsg' [_alertType] = 'notificationType' ></app-notification>
+        <button class="btn btn-gradient-primary me-2" (click)="UpdateInfo()">Edit</button>
+        <button class="btn btn-light" (click)="Cancel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

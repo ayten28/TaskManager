@@ -1,0 +1,38 @@
+<div class="page-header">
+  <h3 class="page-title"> Create new task </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form class="forms-sample" [formGroup]="createTaskForm" (ngSubmit)="CreateTask()" #myform="ngForm">
+        <div class="form-group">
+          <label for="taskNameInput">Task Name</label>
+          <input type="text" class="form-control" id="taskNameInput" placeholder="Task Name"
+            [(ngModel)]="task!.taskName" formControlName="taskName">
+          <div *ngIf="createTaskForm.get('taskName')?.hasError('required') && submitted">
+            <small class="text-danger">Please enter task name</small>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="taskDescrInput">Task Description</label>
+          <textarea class="form-control" id="taskDescrInput" rows="4" [(ngModel)]="task!.taskDescription"
+            formControlName="taskDescription"></textarea>
+          <div *ngIf="createTaskForm.get('taskDescription')?.hasError('required') && submitted">
+            <small class="text-danger">Please enter task description</small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="exampleSelectGender">Select User</label>
+          <user-list [_userId]="currentUserId" (userIdChange)=changeUserId($event) formControlName="assignUser"></user-list>
+          <div *ngIf="userValid && submitted">
+            <small class="text-danger">Please enter task description</small>
+          </div>
+        </div>
+        <app-notification [_header] = 'notificationHeader' [_message] = 'notificationMsg' [_alertType] = 'notificationType' ></app-notification>
+        <button type="submit" class="btn btn-gradient-primary me-2">Create</button>
+        <button class="btn btn-light" (click)="Cancel()">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

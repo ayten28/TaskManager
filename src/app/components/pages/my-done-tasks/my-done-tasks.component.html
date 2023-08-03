@@ -1,0 +1,38 @@
+<div class="page-header">
+    <h3 class="page-title">Done Tasks </h3>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> # </th>
+                    <th> Task Name </th>
+                    <th> Task Description </th>
+                    <th> Created by </th>
+                    <th> Create date </th>
+                    <th> Assigned to </th>
+                    <th> Task done date </th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let task of tasks">
+                    <td> {{ task.id}} </td>
+                    <td> {{ task.taskName}} </td>
+                    <td> {{ task.taskDescription}} </td>
+                    <td> {{ task.createUserFullName }} </td>
+                    <td> {{ task.createdDate }} </td>
+                    <td> {{ task.assignUserFullName }} </td>
+                    <td> {{ task.resolveDate }} </td>     
+                    <td> 
+                        <a class="nav-link" (click)="Navigate(task.id)">
+                            <i class="mdi mdi-information-outline"></i>
+                        </a>
+                    </td>            
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
