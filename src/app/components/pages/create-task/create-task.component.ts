@@ -61,7 +61,7 @@ export class CreateTaskComponent {
         "createUser": this.cookieUser,
         "assignUser": this.userId
       }
-      this.apiService.post(`tasks`, body)
+      this.apiService.post(`tasks/createTask`, body)
         .subscribe(
           (result: any) => {
             if (result.code == 2000) {

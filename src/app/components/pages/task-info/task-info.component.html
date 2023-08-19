@@ -1,45 +1,64 @@
 <div class="page-header">
-    <h3 class="page-title"> Task Info </h3>
-  </div>
-  <div class="col-12 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <form class="forms-sample">         
-          <div class="form-group">
-            <label for="exampleInputName1">Task Name</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="task!.taskName" [ngModelOptions]="{standalone: true}">
+  <h3 class="page-title"> Task Info </h3>
+</div>
+<div class="col-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <form class="forms-sample">
+        <div class="form-group">
+          <label for="exampleInputName1">Task Name</label>
+
+          <input type="text" class=" form-control input" readonly="true" [(ngModel)]="task!.taskName"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputName1">Task Description</label>
+          <input type="text" class=" form-control inpt" readonly="true" [(ngModel)]="task!.taskDescription"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail3">Created User</label>
+          <input type="text" class=" form-control inpt" readonly="true" [(ngModel)]="task!.createUserFullName"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="positionInput1">Create date</label>
+          <input type="text" class=" form-control inpt" readonly="true" [(ngModel)]="task!.createdDate"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="exampleSelectGender">Assigned User</label>
+          <input type="text" class=" form-control inpt" readonly="true" [(ngModel)]="task!.assignUserFullName"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+        <div class="form-group">
+          <label for="positionInput1">Resolve date</label>
+          <input type="text" class=" form-control inpt" readonly="true" [(ngModel)]="resolvationDate"
+            [ngModelOptions]="{standalone: true}">
+        </div>
+
+        <app-notification [_header]='notificationHeader' [_message]='notificationMsg'
+          [_alertType]='notificationType'></app-notification>
+        <button class="btn btn-gradient-primary me-2" [hidden]="hideEdit" (click)="UpdateInfo()">Edit</button>
+        <button class="btn btn-light" (click)="Cancel()">Cancel</button>
+      </form>
+    </div>
+    <div class="card-body">
+      <h3 class="page-title"> Comments </h3>
+      <hr>
+      <div class="comments-container">       
+        <div class="comment-list">
+          <div class="comment"  *ngFor="let comment of comments">
+            <p class="username">{{comment.createUserFullName}}</p>
+            <p>{{comment.text}}</p>
           </div>
-          <div class="form-group">
-            <label for="exampleInputName1">Task Description</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="task!.taskDescription" [ngModelOptions]="{standalone: true}" >
-          </div>
-          <div class="form-group">
-            <label for="exampleInputEmail3">Created User</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="task!.createUserFullName" [ngModelOptions]="{standalone: true}" >
-          </div>
-          <div class="form-group">
-            <label for="positionInput1">Create date</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="task!.createdDate" [ngModelOptions]="{standalone: true}" >
-          </div>
-          <div class="form-group">
-            <label for="exampleSelectGender">Assigned User</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="task!.assignUserFullName" [ngModelOptions]="{standalone: true}" >
-          </div>
-          <div class="form-group">
-            <label for="positionInput1">Resolve date</label>
-            <input type="text" class="form-control" readonly="true"
-             [(ngModel)]="resolvationDate" [ngModelOptions]="{standalone: true}" >
-          </div>
-         
-          <app-notification [_header] = 'notificationHeader' [_message] = 'notificationMsg' [_alertType] = 'notificationType' ></app-notification>
-          <button class="btn btn-gradient-primary me-2" [hidden]="hideEdit" (click)="UpdateInfo()">Edit</button>
-          <button class="btn btn-light" (click)="Cancel()">Cancel</button>
-        </form>
+        </div>
+        <div [hidden]="addcomment">
+        <textarea placeholder="Add a comment" [(ngModel)]="newComment"></textarea>
+        <button class="btn btn-gradient-primary" (click)="AddComment()">Add Comment</button>
+        </div>
       </div>
     </div>
   </div>
+
+</div>

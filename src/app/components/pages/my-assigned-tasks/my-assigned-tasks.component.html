@@ -18,12 +18,12 @@
             </thead>
             <tbody>
                 <tr *ngFor="let task of tasks">
-                    <td>  <input class="checkbox" type="checkbox" [checked]="task.isDone" [disabled]="task.isDone"> </td>
+                    <td>  <input class="checkbox" type="checkbox" [checked]="task.isDone" [disabled]="task.isDone" (click)="Done(task.id)"> </td>
                     <td> {{ task.id }} </td>
                     <td> {{ task.taskName }} </td>
-                    <td> {{ task.taskDescription }} </td>
-                    <td> {{ task.createdDate }} </td>
-                    <td> {{ task.createUserFullName }} </td> 
+                    <td> {{ task.taskDescription }} </td>                    
+                    <td> {{ task.createUserFullName }} </td>
+                    <td> {{ task.createdDate }} </td> 
                     <td> 
                         <a class="nav-link" (click)="Navigate(task.id)">
                             <i class="mdi mdi-information-outline"></i>

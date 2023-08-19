@@ -138,4 +138,11 @@ export class UserUpdateComponent {
     this.notificationMsg = message;
     this.notificationHeader = header;
   }
+
+  uploadPhoto(event: any){
+    debugger
+    var aaaa = event.target.files[0];
+    console.log(aaaa);
+
+  }
 }

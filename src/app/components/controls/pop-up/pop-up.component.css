@@ -8,3 +8,13 @@ padding: 2%;
 {
     width: 70px;
 }
+
+#popup-modal
+{
+    z-index: 1000;
+}
+
+::ng-deep ngb-modal-backdrop {
+    z-index: 999 !important;
+  
+  }

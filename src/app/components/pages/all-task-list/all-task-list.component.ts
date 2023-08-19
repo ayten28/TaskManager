@@ -41,4 +41,10 @@ export class AllTaskListComponent {
       );
   }
 
+  
+  Navigate(id: any)
+  {
+    this.router.navigate(['/main/taskinfo/' + id]);
+  }
+
 }

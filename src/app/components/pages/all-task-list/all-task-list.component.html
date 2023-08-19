@@ -15,7 +15,7 @@
                     <th> Create date </th>
                     <th> Assigned to </th>
                     <th> Task done date </th>
-                    <!-- <th></th> -->
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,12 +27,13 @@
                     <td> {{ task.createUserFullName }} </td>
                     <td> {{ task.createdDate }} </td>
                     <td> {{ task.assignUserFullName }} </td>
-                    <td> {{ task.resolveDate }} </td>  
-                    <!-- <td>
-                        <a class="nav-link">
-                            <i class="mdi mdi-comment"></i>
+                    <td> {{ task.resolveDate }} </td> 
+                    <td> 
+                        <a class="nav-link" (click)="Navigate(task.id)">
+                            <i class="mdi mdi-information-outline"></i>
                         </a>
-                    </td>                 -->
+                    </td> 
+                    
                 </tr>
             </tbody>
         </table>
