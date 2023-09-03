@@ -1,5 +1,5 @@
 import { HttpHeaders } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IgetUserInfoDtoModel } from 'src/app/models/getUserInfoDto';
@@ -40,7 +40,8 @@ export class UserUpdateComponent {
   updateForm: any;
   submitted: boolean | undefined;
   phoneValid: boolean = false;
-
+  @ViewChild('fileInput') fileInput!: ElementRef;
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,  private apiService: ApiService  ) {
@@ -144,5 +145,44 @@ export class UserUpdateComponent {
     var aaaa = event.target.files[0];
     console.log(aaaa);
 
+  }
+
+  selectImage(): void {
+    this.fileInput.nativeElement.click();
+  }
+
+  handleImageSelection(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length) {
+      const selectedImage = inputElement.files[0];
+      const formData = new FormData();
+      formData.append('photo', selectedImage);
+      // Do something with the selected image file
+      debugger
+      this.apiService.post(`upload/uploadPhoto/${this.userId}`, formData)
+      .subscribe(
+        (result: any) => {
+          if (result.code == 2000) {
+
+            //  this.router.navigate(['main/userinfo/' + this.userId]).then(() => {
+            //   window.location.reload()
+            // });
+          }
+          else if (result.code == 2005) {
+          // this.setNotification('Error!', result.message, 'danger');
+            console.log("Unauthorized");
+          }
+          else {
+            this.setNotification('Error!', result.message, 'danger');
+            console.log("error");
+          }
+        }, error => {
+          if (error.error.status == 401){
+            this.setNotification('Error!', 'Unauthorized', 'danger');
+            console.log('Unathirized');}
+        }
+      );
+      
+    }
   }
 }
